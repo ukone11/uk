@@ -17,7 +17,7 @@ private:
         }
     };
 
-    std::list<Item> queue; 
+    list<Item> queue; 
 
 public:
     void insert(T data, int priority) {
