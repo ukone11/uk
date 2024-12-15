@@ -5,14 +5,13 @@ using namespace std;
 
 class PizzaParlor {
 private:
-    string* queue;   // Array to store orders
-    int front;       // Front of the queue
-    int rear;        // Rear of the queue
-    int capacity;    // Maximum number of orders (M)
-    int size;        // Current number of orders in the queue
+    string* queue;   
+    int front;       
+    int rear;        
+    int capacity;    
+    int size;        
 
 public:
-    // Constructor to initialize the pizza parlor with capacity M
     PizzaParlor(int M) {
         capacity = M;
         queue = new string[capacity];
@@ -21,38 +20,34 @@ public:
         size = 0;
     }
 
-    // Destructor to clean up the allocated memory
     ~PizzaParlor() {
         delete[] queue;
     }
 
-    // Function to place a new order in the queue
     void placeOrder(string order) {
         if (size == capacity) {
             cout << "Sorry, the pizza parlor is full. Cannot accept more orders." << endl;
             return;
         }
         if (front == -1) {
-            front = 0;  // First order
+            front = 0;  
         }
-        rear = (rear + 1) % capacity;  // Circular increment
+        rear = (rear + 1) % capacity;  
         queue[rear] = order;
         size++;
         cout << "Order placed: " << order << endl;
     }
 
-    // Function to serve an order (remove from the queue)
     void serveOrder() {
         if (size == 0) {
             cout << "No orders to serve." << endl;
             return;
         }
         cout << "Serving order: " << queue[front] << endl;
-        front = (front + 1) % capacity;  // Circular increment
+        front = (front + 1) % capacity; 
         size--;
     }
 
-    // Function to display all current orders in the queue
     void displayOrders() {
         if (size == 0) {
             cout << "No orders in the queue." << endl;
@@ -63,17 +58,15 @@ public:
         int i = front;
         for (int j = 0; j < size; j++) {
             cout << queue[i] << " ";
-            i = (i + 1) % capacity;  // Circular increment
+            i = (i + 1) % capacity; 
         }
         cout << endl;
     }
 
-    // Function to check if the queue is full
     bool isFull() {
         return size == capacity;
     }
 
-    // Function to check if the queue is empty
     bool isEmpty() {
         return size == 0;
     }
@@ -104,7 +97,7 @@ int main() {
                     cout << "The pizza parlor is full! Cannot place any more orders." << endl;
                 } else {
                     cout << "Enter order description: ";
-                    cin.ignore();  // To ignore the newline character left by cin
+                    cin.ignore();  
                     getline(cin, order);
                     parlor.placeOrder(order);
                 }
